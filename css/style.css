@@ -1,0 +1,55 @@
+h1 {
+    text-align: left;
+}
+
+h2 {
+    margin-top: 1.5em;
+}
+
+#contact-input > div, #add-contact {
+    margin-top: 1em;
+}
+#contact-display {
+    margin-left: 5em;
+    display: none;
+}
+
+#contacts-list {
+    display: none;
+}
+
+#column-effect {
+    display: inline-flex;
+}
+
+#contact-input-container {
+    margin-left: 2em;
+}
+
+#contacts-list-container {
+    margin-left: 1.9em;
+}
+
+.input-address-2 {
+    display: none;
+}
+
+#input-phone-number-2 {
+    display: none;
+}
+
+#remove-phone-number-2-fields {
+    display: none;
+}
+
+#remove-address-2-fields {
+    display: none;
+}
+
+#address-2-display {
+    display: none;
+}
+
+#phone-number-2-display {
+    display: none;
+}
