@@ -28,6 +28,13 @@ h2 {
 
 #contacts-list-container {
     margin-left: 1.9em;
+    margin-bottom: 7em;
 }
 
 
+
+
+
+#addresses-display > li {
+    margin-bottom: 1em;
+}

@@ -6,12 +6,12 @@ var Contact = {
     "Phones": { "personal": [], "work": [] }, 
     "Emails": { "personal": [], "work": [] }, 
     "Addresses": {
-        "home": [{
+        "home":[{
             "streetLine1": "",
             "streetLine2": "",
             "city": "",
             "state": "",
-            "zip": "",
+            "zipcode": "",
             "country": ""
         }],
         "work": [{
@@ -19,7 +19,7 @@ var Contact = {
             "streetLine2": "",
             "city": "",
             "state": "",
-            "zip": "",
+            "zipcode": "",
             "country": ""
         }]
     }
@@ -31,48 +31,33 @@ function getValuesFromInputClass(theClass) {
     return theItems;
 }
 
-function addNamesToContact(currentContact) {
-    currentContact.Names = getValuesFromInputClass("name");
+function addNamesToContact(theContact) {
+    theContact.Names = getValuesFromInputClass("name");
 }
     
-function addContactMethodsToContact(currentContact) {
-    currentContact.Phones.personal = getValuesFromInputClass("personal-phones");
-    currentContact.Phones.work = getValuesFromInputClass("work-phones");
-    currentContact.Emails.personal = getValuesFromInputClass("personal-emails");
-    currentContact.Emails.work = getValuesFromInputClass("work-emails");
+function addContactMethodsToContact(theContact) {
+    theContact.Phones.personal = getValuesFromInputClass("personal-phones");
+    theContact.Phones.work = getValuesFromInputClass("work-phones");
+    theContact.Emails.personal = getValuesFromInputClass("personal-emails");
+    theContact.Emails.work = getValuesFromInputClass("work-emails");
 }
 
-function addAddressesToContact(currentContact) {
+function addAddressesToContact(theContact) {
     var homeAddress = getValuesFromInputClass("home-address");
-    currentContact.Addresses.home.streetLine1 = homeAddress[0];
-    currentContact.Addresses.home.streetLine2 = homeAddress[1];
-    currentContact.Addresses.home.city = homeAddress[2];
-    currentContact.Addresses.home.state = homeAddress[3];
-    currentContact.Addresses.home.zip = homeAddress[4];
-    currentContact.Addresses.home.country = homeAddress[5];
+    theContact.Addresses.home.streetLine1 = homeAddress[0];
+    theContact.Addresses.home.streetLine2 = homeAddress[1];
+    theContact.Addresses.home.city = homeAddress[2];
+    theContact.Addresses.home.state = homeAddress[3];
+    theContact.Addresses.home.zipcode = homeAddress[4];
+    theContact.Addresses.home.country = homeAddress[5];
     
     var workAddress = getValuesFromInputClass("work-address");
-    currentContact.Addresses.work.streetLine1 = workAddress[0];
-    currentContact.Addresses.work.streetLine2 = workAddress[1];
-    currentContact.Addresses.work.city = workAddress[2];
-    currentContact.Addresses.work.state = workAddress[3];
-    currentContact.Addresses.work.zip = workAddress[4];
-    currentContact.Addresses.work.country = workAddress[5];
-    
-    //code for loop that adds other addresses to Addresses object
-    /* var arrayOfOtherAddressses = getValuesFromInputClass("other-address");
-    console.log(arrayOfOtherAddressses);
-    for (var i = 0; i < arrayOfOtherAddressses.length; i++) {
-        currentContact.Addresses.other.streetLine1 = arrayOfOtherAddress[i][0];
-        currentContact.Addresses.other.streetLine2 = arrayOfOtherAddress[i][1];
-        currentContact.Addresses.other.city = arrayOfOtherAddress[i][2];
-        currentContact.Addresses.other.state = arrayOfOtherAddress[i][3];
-        currentContact.Addresses.other.zip = arrayOfOtherAddress[i][4];
-        currentContact.Addresses.other.country = arrayOfOtherAddress[i][5];
-    } 
-    return itemValues;
-    console.log(itemValues); */
-    
+    theContact.Addresses.work.streetLine1 = workAddress[0];
+    theContact.Addresses.work.streetLine2 = workAddress[1];
+    theContact.Addresses.work.city = workAddress[2];
+    theContact.Addresses.work.state = workAddress[3];
+    theContact.Addresses.work.zipcode = workAddress[4];
+    theContact.Addresses.work.country = workAddress[5];
 }
 
 //function that pushes data entered into new contact object that is pushed to contacts array
@@ -87,14 +72,31 @@ function storeContactInfo() {
     allContacts.push(newContact);
     console.log(allContacts);
     
-    $("#contacts-list").show();
-    $("#contacts-list").append("<li>" + newContact.Names[0] + " " + newContact.Names[1] + "</li>");
+    //$("#contacts-list").show();
+    //$("#contacts-list").append("<li>" + newContact.Names[0] + " " + newContact.Names[1] + "</li>");
 }
 
 // code for adding additional properties of vCard (begin, version, rev, end) to contact object 
     
 //clears fields for additional contact input(s)
     $(".all-inputs").val("");
+
+function searchContacts() {
+    for (var i = 0; i < allContacts.length; i++) {
+        for (var prop in allContacts[i]) {
+            console.log(allContacts[i][prop]);
+            
+            if (allContacts[i][prop] === $(".search-input").val()) {
+                $("#contacts-list").show();
+                $("#contacts-list").append("<li>" + allContacts[i][Names][0] + " " + allContacts[i][Names][1] + "</li>");
+            }
+            else {
+                alert("No match found!");
+                break;
+            }
+        }
+    }
+}
 
 //function that adds as many "other" address fields as the user desires
 function addAddressField() {
@@ -107,17 +109,62 @@ function hideContactDisplay() {
     $("#contact-display").hide();
 }
 
-//identify additional addresses and phone numbers by index number in array of addresses, array of phone numbers
-function fillInContactDisplay(currentContact) {
-    $("#full-name-display").text(currentContact.Names[0] + " " + newContact.Names[1]);
+function displayContactMethods(contactMethodArrayPath, displayId) {
+    if (contactMethodArrayPath === "") {
+        $("#" + displayId).hide();
+    }
+    else { 
+        for (var i = 0; i < contactMethodArrayPath.length; i++) {
+            $("#" + displayId).append("<li>" + contactMethodArrayPath[i] + "</li>");
+        }   
+    }
+}
+
+function displayAddress(displayId, contactAddressArrayPath, streetLine1, streetLine2, city, state, zip, country) {
+    for (var i = 0; i < contactAddressArrayPath.length; i++) {
+        $("#" + displayId).show();
+        $("#" + displayId + " .streetLine1").append(" " + streetLine1);
+        
+        if (streetLine2 === "none") {
+            $("#" + displayId + " .streetLine2").hide();
+        }
+        else {
+            $("#" + displayId + " .streetLine2").append(" " + streetLine2);
+        }
+        
+        $("#" + displayId + " .city-state-zipcode").append(" " + city + ", " + state + " " + zip);
+        $("#" + displayId + " .country").append(" " + country);
+    }
+}
+
+function fillInContactDisplay(theContact) {
+    event.preventDefault();
+    $("#full-name-display").text(theContact.Names[0] + " " + theContact.Names[1]);
     
-    ("#first-name-display").text(currentContact.Names[0]);
-    $("#last-name-display").text(currentContact.Names[1]);
+    //display first and last names
+    $("#first-name-display").text(theContact.Names[0]);
+    $("#last-name-display").text(theContact.Names[1]);
+    
+    //display contact methods
+    displayContactMethods(theContact.Phones.personal, "personal-phone-numbers-display");
+    displayContactMethods(theContact.Phones.work, "work-phone-numbers-display");
+    displayContactMethods(theContact.Emails.personal, "personal-emails-display");
+    displayContactMethods(theContact.Emails.work, "work-emails-display");
+    
+    displayAddress("personal-address-display", theContact.Addresses.home, theContact.Addresses.home.streetLine1, theContact.Addresses.home.streetLine2, theContact.Addresses.home.city, theContact.Addresses.home.state, theContact.Addresses.home.zipcode, theContact.Addresses.home.country );
+    displayAddress("work-address-display", theContact.Addresses.work, theContact.Addresses.work.streetLine1, theContact.Addresses.work.streetLine2, theContact.Addresses.work.city, theContact.Addresses.work.state, theContact.Addresses.work.zipcode, theContact.Addresses.work.country);
+
 }
 
 $("#contacts-list").on('click', 'li', function(event){
     $("#contact-display").show();
     //function that fills in the values of the contact display with the array element corresponding to the li
-    var selectedContact = allContacts.this;
-    fillInContactDisplay(selectedContact);
+    for (var i = 0; i < allContacts.length; i++) {
+        if ($(this).html() === allContacts[i].Names[0] + " " + allContacts[i].Names[1]) {
+            fillInContactDisplay(allContacts[i]);
+        }
+        else {
+            alert("Not found!");
+        }
+    }
 });

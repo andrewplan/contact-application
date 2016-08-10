@@ -14,86 +14,103 @@
     </head>
     <body>
         <div id="column-effect">
-        <div id="contact-input-container">
-            <h1>Contacts</h1>
-            <h2>Add a contact:</h2>
-        <form id="contact-input">
-            <div class="bs-example">
-                <label for="name">Enter first name and last name separated by comma</label><br />
-                <input type="text" class="name all-inputs bootstrap-tagsinput tag" name="name" data-role="tagsinput"/>
+            <div id="contact-input-container">
+                <h1>Contacts</h1>
+                <h2>Add a contact:</h2>
+                <form id="contact-input">
+                    <div class="bs-example">
+                        <label for="name">Enter first name and last name separated by comma</label><br />
+                        <input type="text" class="name all-inputs bootstrap-tagsinput tag" name="name" data-role="tagsinput"/>
+                    </div>
+                    <div id="phone-numbers-container" class="bs-example">
+                        <div>
+                            <label for="personal-phones">Enter personal phone numbers separated by comma</label><br />
+                            <input type="tel" class="personal-phones all-inputs bootstrap-tagsinput tag" name="personal-phones" data-role="tagsinput"/>
+                        </div>
+                        <div>
+                            <label for="work-phones">Enter work phone numbers separated by comma</label><br />
+                            <input type="tel" class="work-phones all-inputs bootstrap-tagsinput tag" name="work-phones"  data-role="tagsinput"/>
+                        </div>
+                    </div>    
+                    <div id="email-addresses-container" class="bs-example">
+                        <div>
+                            <label for="personal-emails">Enter personal email addresses separated by comma</label><br />
+                            <input type="text" class="personal-emails all-inputs bootstrap-tagsinput tag" name="personal-emails" data-role="tagsinput">
+                        </div>
+                        <div>
+                            <label for="work-emails">Enter work email addresses separated by comma</label><br />
+                            <input type="text" class="work-emails all-inputs bootstrap-tagsinput tag" name="work-emails" data-role="tagsinput">
+                        </div>
+                    </div>
+                    <div id="addresses-container" class="bs-example">
+                        <div>
+                            <label for="home-address"> Enter home address in the following format:  
+                                <ul>
+                                    <li>street line 1, street line 2, city, state, zip, country</li>
+                                    <li>type "none" for street line 2 if not applicable</li>
+                                </ul>
+                            </label><br />
+                            <input type="text" class="home-address all-inputs bootstrap-tagsinput tag" name="home-address" data-role="tagsinput"/>
+                        </div>
+                        <div>    
+                            <label for="work-address"> Enter work address in the following format:  
+                                <ul>
+                                    <li>street line 1, street line 2, city, state, zip, country</li>
+                                    <li>type "none" for street line 2 if not applicable</li>
+                                </ul>
+                            </label><br />
+                            <input type="text" class="work-address all-inputs bootstrap-tagsinput tag" name="work-address" data-role="tagsinput"/>
+                        </div>         
+                            <!--<div>    
+                            <label for="other-address"> Enter other address in the following format:
+                                <ul>
+                                    <li>street line 1, street line 2, city, state, zip, country</li>
+                                    <li>type "none" for any fields that don't apply</li>
+                                </ul>
+                            </label><br />
+                            <input type="text" class="other-address all-inputs bootstrap-tagsinput tag" name="other-address" data-role="tagsinput"/>
+                            </div> -->
+                    </div>
+                    <!--<input type="submit" id="add-other-address" value="Add other address" onclick="addAddressField()"><br /> -->
+                    <input type="submit" id="add-contact" value="Add to contacts" onclick="javascript:storeContactInfo()"/>
+                </form>
             </div>
-            <div id="phone-numbers-container" class="bs-example">
-                <div>
-                    <label for="personal-phones">Enter personal phone numbers separated by comma</label><br />
-                    <input type="tel" class="personal-phones all-inputs bootstrap-tagsinput tag" name="personal-phones" data-role="tagsinput"/>
-                </div>
-                <div>
-                    <label for="work-phones">Enter work phone numbers separated by comma</label><br />
-                    <input type="tel" class="work-phones all-inputs bootstrap-tagsinput tag" name="work-phones"  data-role="tagsinput"/>
-                </div>
-            </div>    
-            <div id="email-addresses-container" class="bs-example">
-                <div>
-                    <label for="personal-emails">Enter personal email addresses separated by comma</label><br />
-                    <input type="text" class="personal-emails all-inputs bootstrap-tagsinput tag" name="personal-emails" data-role="tagsinput">
-                </div>
-                <div>
-                    <label for="work-emails">Enter work email addresses separated by comma</label><br />
-                    <input type="text" class="work-emails all-inputs bootstrap-tagsinput tag" name="work-emails" data-role="tagsinput">
-                </div>
-            </div>
-            <div id="addresses-container" class="bs-example">
-                <div>
-                    <label for="home-address"> Enter home address in the following format:  
-                        <ul>
-                            <li>street line 1, street line 2, city, state, zip, country</li>
-                            <li>type "none" for any fields that don't apply</li>
-                        </ul>
-                    </label><br />
-                    <input type="text" class="home-address all-inputs bootstrap-tagsinput tag" name="home-address" data-role="tagsinput"/>
-                </div>
-                <div>    
-                    <label for="work-address"> Enter work address in the following format:  
-                        <ul>
-                            <li>street line 1, street line 2, city, state, zip, country</li>
-                            <li>type "none" for any fields that don't apply</li>
-                        </ul>
-                    </label><br />
-                    <input type="text" class="work-address all-inputs bootstrap-tagsinput tag" name="work-address" data-role="tagsinput"/>
-                </div>         
-                    <!--<div>    
-                    <label for="other-address"> Enter other address in the following format:
-                        <ul>
-                            <li>street line 1, street line 2, city, state, zip, country</li>
-                            <li>type "none" for any fields that don't apply</li>
-                        </ul>
-                    </label><br />
-                    <input type="text" class="other-address all-inputs bootstrap-tagsinput tag" name="other-address" data-role="tagsinput"/>
-                    </div> -->
-            </div>
-            <input type="submit" id="add-other-address" value="Add other address" onclick="addAddressField()"><br />
-            <input type="submit" id="add-contact" value="Add to contacts" onclick="javascript:storeContactInfo()"/>
-        </form>
-        </div>
             <div id="contact-display">
                 <h2 id="full-name-display"></h2>
                 <p>First name: <span id="first-name-display"></span></p>
                 <p>Last name: <span id="last-name-display"></span></p>
-                <p>Home phone numbers:</p>
-                <ol id="home-phone-numbers-display">
+                <p>Personal phone numbers:</p>
+                <ol id="personal-phone-numbers-display">
                 </ol>
                 <p>Work phone numbers:</p>
                 <ol id="work-phone-numbers-display">
                 </ol>
-                <p>Home email addresses:</p>
-                <ol id="home-emails-display">
+                <p>Personal email addresses:</p>
+                <ol id="personal-emails-display">
                 </ol>
+                <p>Work email addresses:</p>
                 <ol id="work-emails-display">
                 </ol>
                 <p>Addresses:</p>
                 <ul id="addresses-display">
-                    <li id="home-address-display"></li>
-                    <li id="work-address-display"></li>
+                    <li>
+                        <p>Personal</p>
+                        <div id="personal-address-display">
+                            <div class="streetLine1"></div>
+                            <div class="streetLine2"></div>
+                            <div class="city-state-zipcode"></div>
+                            <div class="country"></div>
+                        </div>
+                    </li>
+                    <li>
+                        <p>Work</p>
+                        <div id="work-address-display">
+                            <div class="streetLine1"></div>
+                            <div class="streetLine2"></div>
+                            <div class="city-state-zipcode"></div>
+                            <div class="country"></div>
+                        </div>
+                    </li>
                 </ul>
                 <form id="hide-contact-display-form">
                     <input type="submit" id="hide-contact-display" value="Hide" onclick="javascript:hideContactDisplay()">
@@ -101,7 +118,11 @@
             </div>
         </div>
         <div id="contacts-list-container">
-            <h2>Contacts:</h2>
+            <div id="search-containter">
+                <h3>Search for contact by name:</h3>
+                <input type="text" class="search-input bootstrap-tagsinput" onclick=""/>
+                <input type="submit" value="Search" onclick="javascript:searchContacts()"/>
+            </div>
             <ul id="contacts-list"></ul>
         </div>
         <script src="https://code.jquery.com/jquery-latest.min.js"></script>
