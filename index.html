@@ -2,90 +2,134 @@
 <html lang=en>
     <head>
         <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
         <title>My Contacts</title>
         <link rel="stylesheet" href="css/normalize.css">
         <link rel="stylesheet" href="css/style.css">
+        <!-- Bootstrap -->
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+        <link href="css/bootstrap-tagsinput.css" rel="stylesheet">
     </head>
     <body>
-        
-        
-        <div id="column-effect">
-            <div id="contact-input-container">
-                <h1>Contacts</h1>
-                <h2>Add a contact:</h2>
-                <form id="contact-input">
-                    <div>
-                        <label for="first-name">First name</label><br>
-                        <input type="text" id="first-name" class="all-inputs" name="first_name" />
-                    </div>
-                    <div>
-                        <label for="last-name">Last name</label><br>
-                        <input type="text" id="last-name" class="all-inputs" name="last_name" />
-                    </div>
-                    <div>
-                        <label for="phone-number">Phone Number</label>
-                        <input type="submit" id="show-phone-number-2-fields" value="Add phone number" onclick="javascript:showPhoneNumber2Fields()"/>
-                        <input type="submit" id="remove-phone-number-2-fields" value="Remove Phone Number 2" onclick="javascript:removePhoneNumber2Fields()"/>
-                        <br>
-                        <input type="tel" id="phone-number-1" class="all-inputs" name="phone_number_1" />
-                    </div>
-                    <div id="input-phone-number-2">
-                        <label for="phone-number-2">Phone Number 2:</label><br>
-                        <input type="tel" id="phone-number-2" class="all-inputs" name="phone_number_2" />
-                    </div>
-                    <div>
-                        <label for="street-1">Street</label><br>
-                        <input type="text" id="street-1" class="all-inputs" name="street" />
-                    </div>
-                    <div>
-                        <label for="city-1">City</label><br>
-                        <input type="text" id="city-1" class="all-inputs" name="city" />
-                    </div>
-                    <div>
-                        <label for="state-1">State</label><br>
-                        <input type="text" id="state-1" class="all-inputs" name="state" />
-                    </div>
-                    <div class="input-address-2">
-                        <label for="street-2">Street 2</label><br>
-                        <input type="text" id="street-2" class="address-2-inputs all-inputs" name="street" />
-                    </div>
-                    <div class="input-address-2">
-                        <label for="city-2">City 2</label><br>
-                        <input type="text" id="city-2" class="address-2-inputs all-inputs" name="city" />
-                    </div>
-                    <div class="input-address-2">
-                        <label for="state-2">State 2</label><br>
-                        <input type="text" id="state-2" class="address-2-inputs all-inputs" name="state" />
-                    </div>
-                    <input type="submit" id="show-address-2-fields" value="Add address" onclick="javascript:showAddress2Fields()"/>
-                    <input type="submit" id="remove-address-2-fields" value="Remove address 2" onclick="javascript:removeAddress2Fields()"/>
-                    <input type="submit" id="add-contact" value="Add to contacts" onclick="javascript:storeContactInfo()"/>
-                </form>
+        <div class="container">
+            <div class="row">
+                <h1>vCard Generator</h1>
             </div>
-            <div id="contact-display">
+            <div class="contact-input-container col-sm-6">
+                <h2>Add contact info</h2>
+                <h5>Follow formatting in <span id ="legend">grey</span></h5>
+                <div id="names" class="bs-example">
+                    <label for="name">Name</label><br />
+                    <p>first name, last name</p>
+                    <input type="text" class="name all-inputs bootstrap-tagsinput tag" name="name" data-role="tagsinput" />
+                </div>
+                <div id="phone-numbers" class="bs-example">
+                    <div>
+                        <label for="personal-phones">Personal phone numbers</label><br />
+                        <p>123-456-7890, 223-456-7890...</p>
+                        <input type="tel" class="personal-phones all-inputs bootstrap-tagsinput tag" name="personal-phones" data-role="tagsinput"/>
+                    </div>
+                    <div>
+                        <label for="work-phones">Work phone numbers </label><br />
+                        <p>123-456-7890, 223-456-7890...</p>
+                        <input type="tel" class="work-phones all-inputs bootstrap-tagsinput tag" name="work-phones"  data-role="tagsinput"/>
+                    </div>
+                </div>    
+                <div id="email-addresses" class="bs-example">
+                    <div>
+                        <label for="personal-emails">Personal email addresses</label><br />
+                        <p>email addy 1, email addy 2...</p>
+                        <input type="text" class="personal-emails all-inputs bootstrap-tagsinput tag" name="personal-emails" data-role="tagsinput">
+                    </div>
+                    <div>
+                        <label for="work-emails">Work email addresses </label><br />
+                        <p>email addy 1, email addy 2...</p>
+                        <input type="text" class="work-emails all-inputs bootstrap-tagsinput tag" name="work-emails" data-role="tagsinput">
+                    </div>
+                </div>
+                <div id="personal-addresses-container">
+                    <div class="personal-address-template" class="bs-example">
+                        <label for="personal-address">Personal address <span class="personal-address-counter"></span></label><br/>
+                        <p>street 1*street 2, city, state, zip, country</p>
+                        <div>
+                            <input type="text" class="personal-address all-inputs bootstrap-tagsinput tag" name="personal-address" data-role="tagsinput"/>
+                        </div>
+                    </div>
+                </div>
+                <div id="work-addresses-container">
+                    <div class="work-address-template" class="bs-example">
+                        <label for="work-address">Work address <span class="work-address-counter"></span></label><br/>
+                        <p>street 1*street 2, city, state, zip, country</p>
+                        <div>
+                            <input type="text" class="work-address all-inputs bootstrap-tagsinput tag" name="streetline1" data-role="tagsinput"/>
+                        </div>
+                    </div>
+                </div>    
+                <!--<input type="submit" id="add-other-address" value="Add other address" onclick="addAddressField()"><br /> -->
+                <input type="submit" id="add-contact" value="Add to contacts" onclick="javascript:storeContactInfo()"/>
+            </div>
+            <div id="contacts-list-container" class="col-sm-3">
+                <div id="search-containter">
+                    <h3>Search for contact by name:</h3>
+                    <input type="text" class="search-input bootstrap-tagsinput" onclick=""/>
+                    <input type="submit" value="Search" onclick="javascript:searchContacts()"/>
+                </div>
+                <ul id="contacts-list"></ul>
+            </div>
+            <div id="contact-display" class="col-sm-3">
                 <h2 id="full-name-display"></h2>
                 <p>First name: <span id="first-name-display"></span></p>
                 <p>Last name: <span id="last-name-display"></span></p>
-                <p>Phone numbers:</p>
-                <ul id="phone-number-display">
-                    <li id="phone-number-1-display"></li>
-                    <li id="phone-number-2-display"></li>
-                </ul>
+                <p>Personal phone numbers:</p>
+                <ol id="personal-phone-numbers-display">
+                </ol>
+                <p>Work phone numbers:</p>
+                <ol id="work-phone-numbers-display">
+                </ol>
+                <p>Personal email addresses:</p>
+                <ol id="personal-emails-display">
+                </ol>
+                <p>Work email addresses:</p>
+                <ol id="work-emails-display">
+                </ol>
                 <p>Addresses:</p>
                 <ul id="addresses-display">
-                    <li id="address-1-display"></li>
-                    <li id="address-2-display"></li>
+                    <li>
+                        <p>Personal</p>
+                        <div id="personal-address-display">
+                            <div class="streetLine1"></div>
+                            <div class="streetLine2"></div>
+                            <div class="city-state-zipcode"></div>
+                            <div class="country"></div>
+                        </div>
+                    </li>
+                    <li>
+                        <p>Work</p>
+                        <div id="work-address-display">
+                            <div class="streetLine1"></div>
+                            <div class="streetLine2"></div>
+                            <div class="city-state-zipcode"></div>
+                            <div class="country"></div>
+                        </div>
+                    </li>
                 </ul>
                 <form id="hide-contact-display-form">
                     <input type="submit" id="hide-contact-display" value="Hide" onclick="javascript:hideContactDisplay()">
                 </form>
             </div>
-        </div>
-        <div id="contacts-list-container">
-            <h2>Contacts:</h2>
-            <ul id="contacts-list"></ul>
+            <div id="vcard-display" class="col-sm-6">
+                <h2>Here's your vCard!</h2>
+                <h4>Just copy and paste the following into your text editor and save it as a '.vcf' file.</h4>
+                <div id="vcard-content"></div>
+                <input type="submit" id="reset" value="Generate another vCard" onclick="javascript:resetVCard()">
+            </div>
         </div>
         <script src="https://code.jquery.com/jquery-latest.min.js"></script>
         <script src="js/app.js"></script>
+        <!-- Include all compiled plugins (below), or include individual files as needed -->
+        <script src="js/bootstrap.min.js"></script>
+        <script src="js/bootstrap-tagsinput.js"></script>
     </body>
 </html>
