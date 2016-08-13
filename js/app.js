@@ -69,8 +69,8 @@ function storeContactInfo() {
 function resetVCard() {
     event.preventDefault();
     $('#vcard-display').slideUp(1000);
-    $('#vcard-content').html('');
     $('.all-inputs').tagsinput('removeAll');
+    $('#vcard-content').html('');
 }
 
 //generates vCard
