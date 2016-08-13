@@ -1,3 +1,8 @@
+body {
+    background-image: url('https://hd.unsplash.com/photo-1446000318540-2fd7bb7f5804');
+    background-size: cover;
+}
+
 h1 {
     text-align: left;
 }
@@ -56,5 +61,9 @@ h5 {
 }
 
 #vcard-content {
-    background-color: antiquewhite;
+    background-color: #E3D3D6;
+}
+
+#add-contact {
+    margin-bottom: 3em;
 }
