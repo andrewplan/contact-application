@@ -29,12 +29,32 @@ h2 {
 #contacts-list-container {
     margin-left: 1.9em;
     margin-bottom: 7em;
+    display: none;
 }
-
-
-
-
 
 #addresses-display > li {
     margin-bottom: 1em;
+}
+
+.contact-input-container p {
+    font-style: italic;
+    color: grey;
+    font-size: 1em;
+}
+
+h5 {
+    color: darkgray;
+    font-style: italic;
+}
+
+#legend {
+    color: grey;
+}
+
+#vcard-display {
+    display: none;
+}
+
+#vcard-content {
+    background-color: antiquewhite;
 }
